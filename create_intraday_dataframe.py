@@ -7,6 +7,7 @@ import pickle as pkl
 def fetch_data(filename):
     path = "data/"+filename
     data = pd.read_csv(path)
+    print(data.tail())
     return data
 
 def get_values(data):
@@ -52,10 +53,10 @@ data = fetch_data(filename)
 df = create_dataframe(data)
 train_valid, train, test, prediction = train_test_split(df,0.8)
 print(train_valid.head())
-print(train.head())
-print(test.head())
-print(prediction.head())
-dump_pickle(train_valid,"train_valid_data.pkl")
-dump_pickle(train, "train_data.pkl")
-dump_pickle(test, "test_data.pkl")
-dump_pickle(prediction, "prediction_data.pkl")
+#print(train.head())
+#print(test.head())
+#print(prediction.head())
+dump_pickle(train_valid, filename[:-4] + "_train_valid_data.pkl")
+dump_pickle(train, filename[:-4] + "_train_data.pkl")
+dump_pickle(test, filename[:-4] + "_test_data.pkl")
+dump_pickle(prediction, filename[:-4] + "_prediction_data.pkl")
